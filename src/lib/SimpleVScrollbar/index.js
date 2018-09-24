@@ -94,6 +94,13 @@ export default class SimpleVScrollbar extends Component {
   }
 
   /**
+   * did mount
+   */
+  componentDidMount() {
+    this.init();
+  }
+
+  /**
    * will unmount
    */
   componentWillUnmount() {
@@ -277,13 +284,11 @@ export default class SimpleVScrollbar extends Component {
    */
   dragStart(e) {
     e.stopPropagation();
-
-    document.addEventListener('mousemove', this.dragging);
-    document.addEventListener('mouseup', this.dragEnd);
     document.onselectstart = () => {
       return false;
     };
-
+    document.addEventListener('mousemove', this.dragging);
+    document.addEventListener('mouseup', this.dragEnd);
     this.isDragging = true;
 
     const thumbTop = this.getOffsetTop(e.target);

@@ -15,6 +15,7 @@ const styles = {
   },
   contentsWrapper: {
     paddingRight: '50px',
+    width: '100%',
   },
   scrollbar: {
     borderTop: 'none',

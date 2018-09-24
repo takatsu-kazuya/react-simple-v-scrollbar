@@ -1,6 +1,6 @@
 {
-  "name": "simple-v-scrollbar-app",
-  "version": "0.1.0",
+  "name": "simple-v-scrollbar",
+  "version": "0.1.1",
   "dependencies": {},
   "scripts": {
     "start": "react-scripts start",
@@ -26,6 +26,10 @@
   "module": "dist/index.js",
   "files": ["dist", "README.md"],
   "license": "MIT",
+  "keywords": [
+    "react",
+    "scrollbar"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:takatsu-kazuya/react-simple-v-scrollbar.git"

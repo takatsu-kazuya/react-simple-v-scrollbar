@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {SimpleVScrollbar} from './lib';
+import SimpleVScrollbar from './lib';
 
 ReactDOM.render(
   <SimpleVScrollbar

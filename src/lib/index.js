@@ -1,2 +1,2 @@
 import SimpleVScrollbar from './SimpleVScrollbar';
-export {SimpleVScrollbar};
+export default SimpleVScrollbar;

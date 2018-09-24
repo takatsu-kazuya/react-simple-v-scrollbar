@@ -1,6 +1,6 @@
 # react-simple-v-scrollbar
 
-It is a simple vertical scroll plug-in.
+It is a simple vertical scroll library.
 
 ## Installation and usage
 
@@ -32,7 +32,7 @@ Note: If width / height is not specified, 100% is specified.
 
 ## Props
 
-* `className` - give the class name. (string)
+* `className` - give the class name (string)
 * `width` - width. If not specified, 100% (number)
 * `height` - height. If not specified, 100% (number)
 * `scrollEnd` - event to be executed when the scroll reaches the bottom (function)

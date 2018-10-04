@@ -12,7 +12,7 @@ Then use it in your app:
 
 ```js
 import React from 'react';
-import SimpleVScrollbar from './lib';
+import SimpleVScrollbar from 'simple-v-scrollbar';
 
 class App extends React.Component {
   render() {

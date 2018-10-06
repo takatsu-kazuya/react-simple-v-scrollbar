@@ -51,10 +51,12 @@ export default class SimpleVScrollbar extends Component {
     this.options = {
       autoHide: true,
       autoHideTimeout: 300,
+      scrollTop: null,
       scrollEnd: null,
       className: null,
       height: null,
       width: null,
+      top: null,
     };
 
     this.setOptions();
@@ -67,6 +69,9 @@ export default class SimpleVScrollbar extends Component {
    * @return {boolean}
    */
   shouldComponentUpdate(nextProps, nextState) {
+    let update = false;
+
+    // check state
     const {
       isScroll,
       display,
@@ -80,13 +85,24 @@ export default class SimpleVScrollbar extends Component {
       browserScrollbarWidth: nextBrowserScrollbarWidth,
     } = nextState;
 
-    let update = false;
     if (
       isScroll !== nextIsScroll ||
       display !== nextDisplay ||
       thumbHeight !== nextThumbHeight ||
       browserScrollbarWidth !== nextBrowserScrollbarWidth
     ) {
+      update = true;
+    }
+
+    // check props
+    const {
+      top = null,
+    } = this.props;
+    const {
+      top: nextTop = null,
+    } = nextProps;
+
+    if (top !== nextTop) {
       update = true;
     }
 
@@ -98,6 +114,16 @@ export default class SimpleVScrollbar extends Component {
    */
   componentDidMount() {
     this.init();
+    this.changeScrollTop();
+  }
+
+  /**
+   * did update
+   * @param {object} prevProps
+   * @param {object} prevState
+   */
+  componentDidUpdate(prevProps, prevState) {
+    this.changeScrollTop(prevProps);
   }
 
   /**
@@ -168,10 +194,12 @@ export default class SimpleVScrollbar extends Component {
     const options = [
       {key: 'autoHide', type: 'boolean'},
       {key: 'autoHideTimeout', type: 'number'},
+      {key: 'scrollTop', type: 'function'},
       {key: 'scrollEnd', type: 'function'},
       {key: 'className', type: 'string'},
       {key: 'height', type: 'number'},
       {key: 'width', type: 'number'},
+      {key: 'top', type: 'number'},
     ];
 
     options.forEach((option) => {
@@ -203,10 +231,45 @@ export default class SimpleVScrollbar extends Component {
   }
 
   /**
+   * call to scroll top event
+   */
+  callToScrollTopEvent() {
+    const {
+      scrollTop,
+    } = this.options;
+
+    if (!scrollTop) {
+      return;
+    }
+
+    scrollTop();
+  }
+
+  /**
    * resize window
    */
   resizeWindow() {
     this.init();
+  }
+
+  /**
+   * change scroll top
+   * @param {object} prevProps
+   */
+  changeScrollTop(prevProps = {}) {
+    const {
+      top = null,
+    } = this.props;
+    const {
+      top: prevTop = null,
+    } = prevProps;
+
+    if (null === top || top === prevTop || 'number' !== typeof top) {
+      return;
+    }
+
+    this.refContentsFrame.current.scrollTop = top;
+    this.callToScrollTopEvent();
   }
 
   /**

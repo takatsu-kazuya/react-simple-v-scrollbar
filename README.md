@@ -35,6 +35,8 @@ Note: If width / height is not specified, 100% is specified.
 * `className` - give the class name (string)
 * `width` - width. If not specified, 100% (number)
 * `height` - height. If not specified, 100% (number)
+* `top` - scroll position (number)
+* `scrollTop` - event to be executed after changing the scroll position (function)
 * `scrollEnd` - event to be executed when the scroll reaches the bottom (function)
 * `autoHide` - automatic hiding of scroll bars (boolean)
 * `autoHideTimeout` - hide time (number)
